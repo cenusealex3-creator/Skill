@@ -127,12 +127,28 @@ function renderFrontmatter(frontmatter: Record<string, string> | null): string {
 }
 
 /**
+ * Resolve {{#QR}}...{{/QR}} / {{#NOQR}}...{{/NOQR}} pairs so platforms that
+ * omit the inlined Quick Reference do not tell the agent to read empty
+ * "sections above".
+ */
+function applyQuickReferenceVariants(content: string, includeQuickReference: boolean): string {
+  const drop = includeQuickReference
+    ? /\{\{#NOQR\}\}[\s\S]*?\{\{\/NOQR\}\}/g
+    : /\{\{#QR\}\}[\s\S]*?\{\{\/QR\}\}/g;
+  const keep = includeQuickReference
+    ? /\{\{#QR\}\}([\s\S]*?)\{\{\/QR\}\}/g
+    : /\{\{#NOQR\}\}([\s\S]*?)\{\{\/NOQR\}\}/g;
+  return content.replace(drop, '').replace(keep, '$1');
+}
+
+/**
  * Render skill file content from template
  * When isGlobal=true, rewrites script paths to use ~/{root}/ prefix
  */
 export async function renderSkillFile(config: PlatformConfig, isGlobal = false): Promise<string> {
   // Load base template
   let content = await loadTemplate('base/skill-content.md');
+  content = applyQuickReferenceVariants(content, config.sections.quickReference);
 
   // Load quick reference if needed
   let quickReferenceContent = '';
