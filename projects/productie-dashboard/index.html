@@ -5,29 +5,33 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>Plan vs Actual · Producție</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Fira+Sans:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#0b1220;
-  --surface:#111a2b;
-  --surface-2:#16213a;
-  --surface-3:#1c2944;
-  --border:#22314f;
-  --border-strong:#2d3f63;
-  --text:#e8eef7;
-  --text-2:#a9b6cc;
-  --text-3:#71819c;
+  --bg:#020617;
+  --surface:#0e1223;
+  --surface-2:#151b2e;
+  --surface-3:#1e263b;
+  --border:#1e293b;
+  --border-strong:#334155;
+  --text:#f8fafc;
+  --text-2:#cbd5e1;
+  --text-3:#94a3b8;
   --accent:#38bdf8;
   --accent-soft:rgba(56,189,248,.12);
   --success:#22c55e;
   --success-soft:rgba(34,197,94,.12);
   --warning:#f59e0b;
   --warning-soft:rgba(245,158,11,.12);
-  --danger:#ef4444;
+  --danger:#f87171;
   --danger-soft:rgba(239,68,68,.12);
   --info:#818cf8;
   --radius:12px;
   --radius-sm:8px;
-  --font:"Inter","Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --font:"Fira Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --font-mono:"Fira Code",ui-monospace,"Cascadia Mono",Consolas,monospace;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
@@ -36,8 +40,8 @@ body{
   font-family:var(--font);
   background:var(--bg);
   color:var(--text);
-  font-size:14px;
-  line-height:1.4;
+  font-size:16px;
+  line-height:1.5;
   -webkit-font-smoothing:antialiased;
   font-feature-settings:"tnum" 1;
 }
@@ -75,17 +79,17 @@ button,input{font:inherit;color:inherit}
 }
 .brand-mark svg{width:22px;height:22px}
 .brand h1{margin:0;font-size:clamp(20px,1.6vw,28px);font-weight:700;letter-spacing:-.01em;white-space:nowrap}
-.brand p{margin:2px 0 0;color:var(--text-3);font-size:12px;letter-spacing:.02em}
+.brand p{margin:2px 0 0;color:var(--text-2);font-size:14px;letter-spacing:.02em}
 
 .top-meta{display:flex;align-items:center;gap:20px}
 .status{
   display:inline-flex;align-items:center;gap:8px;
-  height:30px;padding:0 12px;
+  height:34px;padding:0 14px;
   border-radius:999px;
   border:1px solid rgba(34,197,94,.3);
   background:var(--success-soft);
   color:var(--success);
-  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
 }
 .status-dot{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 2s ease-in-out infinite}
 .status[data-state="stale"]{color:var(--warning);border-color:rgba(245,158,11,.3);background:var(--warning-soft)}
@@ -94,18 +98,18 @@ button,input{font:inherit;color:inherit}
 @keyframes pulse{50%{opacity:.35}}
 
 .meta-item{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.meta-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
-.meta-value{font-size:15px;font-weight:600;color:var(--text)}
-.meta-value.clock{font-size:20px;letter-spacing:.02em}
+.meta-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.meta-value{font-size:17px;font-weight:600;color:var(--text)}
+.meta-value.clock{font-family:var(--font-mono);font-size:22px;font-weight:500}
 .divider{width:1px;height:34px;background:var(--border)}
 
 .btn{
   display:inline-flex;align-items:center;gap:8px;
-  height:40px;padding:0 16px;
+  height:44px;min-width:44px;padding:0 16px;
   border:1px solid var(--border-strong);
   border-radius:var(--radius-sm);
   background:var(--surface-2);
-  font-size:13px;font-weight:600;
+  font-size:14px;font-weight:600;
   cursor:pointer;
   transition:background .15s ease,border-color .15s ease;
 }
@@ -129,14 +133,14 @@ button,input{font:inherit;color:inherit}
 }
 .kpi{padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:112px}
 .kpi-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.kpi-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+.kpi-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
 .kpi-icon{
   width:28px;height:28px;display:grid;place-items:center;
   border-radius:8px;background:var(--tone-soft);color:var(--tone);
 }
 .kpi-icon svg{width:16px;height:16px}
 .kpi-value{font-size:clamp(30px,2.6vw,46px);font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--text)}
-.kpi-sub{font-size:12px;color:var(--text-3)}
+.kpi-sub{font-size:13px;color:var(--text-3)}
 .kpi[data-tone="plan"]{--tone:var(--warning);--tone-soft:var(--warning-soft)}
 .kpi[data-tone="done"]{--tone:var(--success);--tone-soft:var(--success-soft)}
 .kpi[data-tone="wip"]{--tone:var(--danger);--tone-soft:var(--danger-soft)}
@@ -164,10 +168,10 @@ button,input{font:inherit;color:inherit}
   background:var(--accent-soft);
   border:1px solid rgba(56,189,248,.25);
   color:var(--accent);
-  font-size:12px;font-weight:700;letter-spacing:.06em;
+  font-size:13px;font-weight:700;letter-spacing:.06em;
 }
 .overview-bar{height:6px;border-radius:999px;background:var(--surface-3);overflow:hidden;margin-top:4px}
-.overview-bar span{display:block;height:100%;width:0;border-radius:inherit;background:var(--ring,var(--accent));transition:width .6s var(--ease)}
+.overview-bar span{display:block;height:100%;width:100%;border-radius:inherit;background:var(--ring,var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease),background .3s ease}
 
 /* ---------- Panel / table ---------- */
 .panel{min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden}
@@ -176,15 +180,15 @@ button,input{font:inherit;color:inherit}
   padding:12px 16px;
   border-bottom:1px solid var(--border);
 }
-.toolbar h2{margin:0 auto 0 0;font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px}
+.toolbar h2{margin:0 auto 0 0;font-size:17px;font-weight:600;display:flex;align-items:center;gap:10px}
 .count{
-  font-size:12px;font-weight:600;color:var(--text-2);
-  padding:2px 8px;border-radius:999px;background:var(--surface-3);
+  font-size:13px;font-weight:600;color:var(--text-2);
+  padding:2px 9px;border-radius:999px;background:var(--surface-3);
 }
 .search{position:relative}
 .search svg{position:absolute;left:11px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--text-3);pointer-events:none}
 .search input{
-  width:min(320px,40vw);height:36px;
+  width:min(320px,40vw);height:44px;
   padding:0 12px 0 34px;
   border:1px solid var(--border-strong);
   border-radius:var(--radius-sm);
@@ -196,9 +200,9 @@ button,input{font:inherit;color:inherit}
 .search input:focus{border-color:var(--accent)}
 .seg{display:flex;padding:3px;gap:2px;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border-strong)}
 .seg button{
-  height:28px;padding:0 12px;border:0;border-radius:6px;
+  height:36px;min-width:44px;padding:0 14px;border:0;border-radius:6px;
   background:transparent;color:var(--text-2);
-  font-size:12px;font-weight:600;cursor:pointer;
+  font-size:14px;font-weight:600;cursor:pointer;
   transition:background .15s ease,color .15s ease;
 }
 .seg button:hover{color:var(--text)}
@@ -212,18 +216,18 @@ thead th{
   border-bottom:1px solid var(--border-strong);
   padding:0;
   text-align:right;
-  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);
 }
 thead th:first-child{text-align:left}
 th button{
   all:unset;box-sizing:border-box;
   display:flex;align-items:center;justify-content:flex-end;gap:6px;
-  width:100%;height:44px;padding:0 20px;cursor:pointer;
+  width:100%;height:48px;padding:0 20px;cursor:pointer;
 }
 th:first-child button{justify-content:flex-start}
 th.center button{justify-content:center}
 th button:hover{color:var(--text)}
-th button .arrow{opacity:0;font-size:10px;transition:opacity .15s ease}
+th button .arrow{opacity:0;font-size:11px;transition:opacity .15s ease}
 th[aria-sort] button{color:var(--text)}
 th[aria-sort] button .arrow{opacity:1}
 th:nth-child(1){width:30%}
@@ -235,11 +239,11 @@ tbody td{
   height:52px;padding:0 20px;
   border-bottom:1px solid var(--border);
   text-align:right;
-  font-size:clamp(13px,.9vw,16px);
+  font-size:clamp(14px,.95vw,18px);
   color:var(--text);
   white-space:nowrap;
 }
-tbody td:first-child{text-align:left;font-weight:600;letter-spacing:.01em}
+tbody td:first-child{text-align:left;font-family:var(--font-mono);font-weight:600}
 tbody td.center{text-align:center}
 tbody tr{transition:background .12s ease}
 tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
@@ -252,8 +256,8 @@ tbody tr:hover{background:var(--surface-2)}
 
 .tag{
   display:inline-flex;align-items:center;gap:6px;
-  height:24px;padding:0 10px;border-radius:999px;
-  font-size:11px;font-weight:600;letter-spacing:.04em;
+  height:28px;padding:0 12px;border-radius:999px;
+  font-size:13px;font-weight:600;letter-spacing:.04em;
 }
 .tag:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
 .tag-done{color:var(--success);background:var(--success-soft)}
@@ -262,7 +266,7 @@ tbody tr:hover{background:var(--surface-2)}
 
 .progress{display:flex;align-items:center;gap:12px}
 .bar{flex:1;height:8px;border-radius:999px;background:var(--surface-3);overflow:hidden}
-.bar span{display:block;height:100%;border-radius:inherit;background:var(--tone);transition:width .6s var(--ease)}
+.bar span{display:block;height:100%;width:100%;border-radius:inherit;background:var(--tone);transform:scaleX(var(--w,0));transform-origin:left}
 .pct{min-width:44px;text-align:right;font-weight:600;color:var(--tone)}
 .progress[data-tone="low"]{--tone:var(--danger)}
 .progress[data-tone="mid"]{--tone:var(--warning)}
@@ -271,14 +275,15 @@ tbody tr:hover{background:var(--surface-2)}
 
 .state{display:none;padding:56px 20px;text-align:center;color:var(--text-3)}
 .state.show{display:block}
-.state b{display:block;color:var(--text-2);font-size:15px;margin-bottom:4px}
+.state b{display:block;color:var(--text);font-size:17px;margin-bottom:4px}
+.state .btn{margin-top:16px}
 
 .alert{
   display:none;align-items:center;gap:10px;
   padding:10px 16px;
   border-bottom:1px solid rgba(239,68,68,.3);
   background:var(--danger-soft);
-  color:#fca5a5;font-size:13px;
+  color:#fca5a5;font-size:14px;
 }
 .alert.show{display:flex}
 .alert svg{width:16px;height:16px;flex:none}
@@ -289,7 +294,8 @@ tbody tr:hover{background:var(--surface-2)}
 @media (min-width:1800px){
   .app{padding:28px 40px 32px;gap:20px}
   tbody td{height:60px}
-  th button{height:50px}
+  th button{height:52px}
+  .kpi-label,.meta-label,thead th{font-size:13px}
 }
 @media (max-height:800px){
   .app{padding:12px 20px 14px;gap:10px}
@@ -336,7 +342,7 @@ tbody tr:hover{background:var(--surface-2)}
       </div>
     </div>
     <div class="top-meta">
-      <span class="status" id="status" data-state="loading" role="status" aria-live="polite"><span class="status-dot"></span><span id="statusText">Se încarcă</span></span>
+      <span class="status" id="status" data-state="loading" role="status" aria-atomic="true"><span class="status-dot"></span><span id="statusText">Se încarcă</span></span>
       <div class="divider"></div>
       <div class="meta-item">
         <span class="meta-label">Ultima actualizare</span>
@@ -422,7 +428,7 @@ tbody tr:hover{background:var(--surface-2)}
         </thead>
         <tbody id="rows"></tbody>
       </table>
-      <div class="state" id="empty"><b>Niciun rezultat</b>Nu există part number-uri pentru filtrul selectat.</div>
+      <div class="state" id="empty"><b>Niciun rezultat</b>Nu există part number-uri pentru căutarea sau filtrul selectat.<br><button class="btn" id="resetFilters" type="button">Resetează filtrele</button></div>
     </div>
   </section>
 </div>
@@ -500,7 +506,7 @@ function render(){
       <td class="num-strong">${fmt(x.actual)}</td>
       <td class="${dCls}">${x.delta>0?'+':''}${fmt(x.delta)}</td>
       <td class="center">${tag}</td>
-      <td><div class="progress" data-tone="${tone}"><div class="bar"><span style="width:${Math.min(100,Math.max(0,p))}%"></span></div><span class="pct">${p}%</span></div></td>
+      <td><div class="progress" data-tone="${tone}"><div class="bar" aria-hidden="true"><span style="--w:${Math.min(100,Math.max(0,p))/100}"></span></div><span class="pct">${p}%</span></div></td>
     </tr>`;
   }).join('');
 
@@ -518,7 +524,7 @@ function render(){
   $('attainment').textContent=pct+'%';
   $('ring').style.setProperty('--p',Math.min(100,pct));
   $('ring').style.setProperty('--ring',ringColor);
-  $('overviewBar').style.width=Math.min(100,pct)+'%';
+  $('overviewBar').style.transform=`scaleX(${Math.min(100,pct)/100})`;
   $('overviewBar').style.background=ringColor;
   $('attainText').textContent=`${fmt(actual)} din ${fmt(plan)} unități`;
   $('shift').textContent='SCHIMB '+(shift||'—');
@@ -576,6 +582,12 @@ function tick(){
 }
 
 $('search').addEventListener('input',render);
+$('resetFilters').addEventListener('click',()=>{
+  $('search').value='';
+  mode='all';
+  document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.filter==='all')));
+  render();
+});
 $('refresh').addEventListener('click',load);
 
 document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
